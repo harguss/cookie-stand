@@ -32,7 +32,8 @@ console.log('the app js file is connected');
 
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
- 
+ ////////added during class demo
+ //const hours =[0, 0, 0, 0, 0, 0, ]
 
 // locationName: 'Seattle',
 // minCustomerPerHour: 23,
@@ -93,6 +94,18 @@ CookieStore.prototype.render = function(){
   tdLocationName.textContent = this.storeLoc;
   tableRow.appendChild(tdLocationName);
   tbody.appendChild(tableRow);
+
+// /////////////////////////////added during class demo
+// //let this.cookiesEachHour =document.createElement('td) 
+// for(let i=0; hours. length; i++)
+// let ourCookieForThisHour=this.cookiesForThisHour
+// cookiesTotal[i]         =cookieForThisHour
+// cookieTotal += cookieForThisHour;
+
+// let cookiesEachHourlyData = document.createElement('td')
+// cookiesEachHourlyData.textContent = cookieForThisHour
+// //let cookietotal = document.createElement('td)
+// /////////////////////////////////////////////////////////
  
   //create a row for each of our stores
   //at the end of each store row tally the store totals in the last cell
