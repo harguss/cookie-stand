@@ -15,241 +15,52 @@ console.log('the app js file is connected');
 // Dubai	11	38	3.7
 // Paris	20	38	2.3
 // Lima	2	16	4.6
-//two things 1 allows us the right number of iterations in our for loop 
+//two things 1 allows us the right number of iterations in our for loop
+
+
+
+
+
+// 
+
+// Replace all of your object literals for the salmon cookie stand with a single constructor function that, when called with the ‘new’ keyword, it creates a new instance.
+
+// Replace the lists of your data for each store and build a single table of data instead. It should look similar to the following:
+
+// Display each stores data in a table format similar to what is below. Break each column by the hour and complete each row with a “Daily Location Total”.
+
+
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+ ////////added during class demo
+ //const hours =[0, 0, 0, 0, 0, 0, ]
+
+// locationName: 'Seattle',
+// minCustomerPerHour: 23,
+// maxCustomerPerHour: 65,
+// avgCookiesPerSale: 6.3,
+// //needed these to store information 
+// customersEachHour: [],
+// cookiesEachHour: [],
+// totalDailyCookies: 0,
+
+function CookieStore(storeLoc, minCustomerPerHour, maxCustomerPerHour, avgCookiesPerSale){
+  this.storeLoc = storeLoc;
+  this.minCustomerPerHour = minCustomerPerHour ;
+  this.maxCustomerPerHour = maxCustomerPerHour;
+  this.avgCookiesPerSale = avgCookiesPerSale;
+  this.customersEachHour = [];
+  this.cookiesEachHour = [];
+  this.totalDailyCookies = 0;
+}
 
 
 
-let storeOne = {
-  //set up of keys and values given to us.
-  locationName: 'Seattle',
-  minCustomerPerHour: 23,
-  maxCustomerPerHour: 65,
-  avgCookiesPerSale: 6.3,
-  //needed these to store information 
-  customersEachHour: [],
-  cookiesEachHour: [],
-  totalDailyCookies: 0,
-  //calculate customers to store in an array
-  calcCustomersEachHour: function(){
-    for(let i = 0; i < hours.length; i++){
-      this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
-    }
-  },
-  //calculate our cookies and call the customer each hour function
-  calcCookiesEachHour: function(){
-    this.calcCustomersEachHour();
-    for (let i = 0; i < hours.length; i++){
-      let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
-      this.cookiesEachHour.push(oneHour);
-      this.totalDailyCookies = this.totalDailyCookies + oneHour;
-    }
-  },
-  //we have the render function that calls the calc cookie function which calls the calc customers function
-  render(){
-    this.calcCookiesEachHour();
-    const unorderedList = document.getElementById('seattle');
-    for(let i = 0; i < hours.length; i++){
-      //here we get cookies each hour
-      let listItem = document.createElement('li');
-      listItem.textContent = hours[i] + ': ' + this.cookiesEachHour[i] + ' cookies';
-      //they go to the page
-      unorderedList.appendChild(listItem);
-    }//closes for loop
-    //lastly we get total cookies, base on calcs happening above.
-    let listItem = document.createElement('li');
-    listItem.textContent = 'Total: ' + this.totalDailyCookies + ' cookies';
-    unorderedList.appendChild(listItem);
+CookieStore.prototype.calcCustomersEachHour = function(){
+  for(let i = 0; i < hours.length; i++){
+    this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
   }
-};//closes object literal storeOne
-
-
-
-let storeTwo = {
-  //set up of keys and values given to us.
-  locationName: 'Tokyo',
-  minCustomerPerHour: 3,
-  maxCustomerPerHour: 24,
-  avgCookiesPerSale: 1.2,
-  //needed these to store information 
-  customersEachHour: [],
-  cookiesEachHour: [],
-  totalDailyCookies: 0,
-  //calculate customers to store in an array
-  calcCustomersEachHour: function(){
-    for(let i = 0; i < hours.length; i++){
-      this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
-    }
-  },
-  //calculate our cookies and call the customer each hour function
-  calcCookiesEachHour: function(){
-    this.calcCustomersEachHour();
-    for (let i = 0; i < hours.length; i++){
-      let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
-      this.cookiesEachHour.push(oneHour);
-      this.totalDailyCookies = this.totalDailyCookies + oneHour;
-    }
-  },
-  //we have the render function that calls the calc cookie function which calls the calc customers function
-  render(){
-    this.calcCookiesEachHour();
-    const unorderedList = document.getElementById('tokyo');
-    for(let i = 0; i < hours.length; i++){
-      //here we get cookies each hour
-      let listItem = document.createElement('li');
-      listItem.textContent = hours[i] + ': ' + this.cookiesEachHour[i] + ' cookies';
-      //they go to the page
-      unorderedList.appendChild(listItem);
-    }//closes for loop
-    //lastly we get total cookies, base on calcs happening above.
-    let listItem = document.createElement('li');
-    listItem.textContent = 'Total: ' + this.totalDailyCookies + ' cookies';
-    unorderedList.appendChild(listItem);
-  }
-};//closes object literal storeTwo
-
-
-
-let storeThree = {
-  //set up of keys and values given to us.
-  locationName: 'Dubai',
-  minCustomerPerHour: 11,
-  maxCustomerPerHour: 38,
-  avgCookiesPerSale: 3.7,
-  //needed these to store information 
-  customersEachHour: [],
-  cookiesEachHour: [],
-  totalDailyCookies: 0,
-  //calculate customers to store in an array
-  calcCustomersEachHour: function(){
-    for(let i = 0; i < hours.length; i++){
-      this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
-    }
-  },
-  //calculate our cookies and call the customer each hour function
-  calcCookiesEachHour: function(){
-    this.calcCustomersEachHour();
-    for (let i = 0; i < hours.length; i++){
-      let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
-      this.cookiesEachHour.push(oneHour);
-      this.totalDailyCookies = this.totalDailyCookies + oneHour;
-    }
-  },
-  //we have the render function that calls the calc cookie function which calls the calc customers function
-  render(){
-    this.calcCookiesEachHour();
-    const unorderedList = document.getElementById('dubai');
-    for(let i = 0; i < hours.length; i++){
-      //here we get cookies each hour
-      let listItem = document.createElement('li');
-      listItem.textContent = hours[i] + ': ' + this.cookiesEachHour[i] + ' cookies';
-      //they go to the page
-      unorderedList.appendChild(listItem);
-    }//closes for loop
-    //lastly we get total cookies, base on calcs happening above.
-    let listItem = document.createElement('li');
-    listItem.textContent = 'Total: ' + this.totalDailyCookies + ' cookies';
-    unorderedList.appendChild(listItem);
-  }
-};//closes object literal storeThree
-
-
-let storeFour = {
-  //set up of keys and values given to us.
-  locationName: 'Paris',
-  minCustomerPerHour: 20,
-  maxCustomerPerHour: 38,
-  avgCookiesPerSale: 2.3,
-  //needed these to store information 
-  customersEachHour: [],
-  cookiesEachHour: [],
-  totalDailyCookies: 0,
-  //calculate customers to store in an array
-  calcCustomersEachHour: function(){
-    for(let i = 0; i < hours.length; i++){
-      this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
-    }
-  },
-  //calculate our cookies and call the customer each hour function
-  calcCookiesEachHour: function(){
-    this.calcCustomersEachHour();
-    for (let i = 0; i < hours.length; i++){
-      let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
-      this.cookiesEachHour.push(oneHour);
-      this.totalDailyCookies = this.totalDailyCookies + oneHour;
-    }
-  },
-  //we have the render function that calls the calc cookie function which calls the calc customers function
-  render(){
-    this.calcCookiesEachHour();
-    const unorderedList = document.getElementById('paris');
-    for(let i = 0; i < hours.length; i++){
-      //here we get cookies each hour
-      let listItem = document.createElement('li');
-      listItem.textContent = hours[i] + ': ' + this.cookiesEachHour[i] + ' cookies';
-      //they go to the page
-      unorderedList.appendChild(listItem);
-    }//closes for loop
-    //lastly we get total cookies, base on calcs happening above.
-    let listItem = document.createElement('li');
-    listItem.textContent = 'Total: ' + this.totalDailyCookies + ' cookies';
-    unorderedList.appendChild(listItem);
-  }
-};//closes object literal storeFour
-
-
-let storeFive = {
-  //set up of keys and values given to us.
-  locationName: 'Lima',
-  minCustomerPerHour: 2,
-  maxCustomerPerHour: 16,
-  avgCookiesPerSale: 4.6,
-  //needed these to store information 
-  customersEachHour: [],
-  cookiesEachHour: [],
-  totalDailyCookies: 0,
-  //calculate customers to store in an array
-  calcCustomersEachHour: function(){
-    for(let i = 0; i < hours.length; i++){
-      this.customersEachHour.push(random(this.minCustomerPerHour, this.maxCustomerPerHour));
-    }
-  },
-  //calculate our cookies and call the customer each hour function
-  calcCookiesEachHour: function(){
-    this.calcCustomersEachHour();
-    for (let i = 0; i < hours.length; i++){
-      let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
-      this.cookiesEachHour.push(oneHour);
-      this.totalDailyCookies = this.totalDailyCookies + oneHour;
-    }
-  },
-  //we have the render function that calls the calc cookie function which calls the calc customers function
-  render(){
-    this.calcCookiesEachHour();
-    const unorderedList = document.getElementById('lima');
-    for(let i = 0; i < hours.length; i++){
-      //here we get cookies each hour
-      let listItem = document.createElement('li');
-      listItem.textContent = hours[i] + ': ' + this.cookiesEachHour[i] + ' cookies';
-      //they go to the page
-      unorderedList.appendChild(listItem);
-    }//closes for loop
-    //lastly we get total cookies, base on calcs happening above.
-    let listItem = document.createElement('li');
-    listItem.textContent = 'Total: ' + this.totalDailyCookies + ' cookies';
-    unorderedList.appendChild(listItem);
-  }
-};//closes object literal storeFive
-
-
-
-
-
-
-
-
-
+};
 
 
 
@@ -259,183 +70,85 @@ function random(minCust, maxCust){
 }
 
 
-const allStores = [storeOne, storeTwo , storeThree , storeFour , storeFive ];
+
+CookieStore.prototype.calcCookiesEachHour= function(){
+
+  for (let i = 0; i < hours.length; i++){
+    let oneHour = Math.ceil(this.customersEachHour[i] * this.avgCookiesPerSale);
+    this.cookiesEachHour.push(oneHour);
+    this.totalDailyCookies = this.totalDailyCookies + oneHour;
+  }
+};
+
+
+CookieStore.prototype.render = function(){
+  //grabbed table for stores from the html
+  // let storeTable = document.getElementById('store-holder');
+  //create a table row for the time in our table
+  // let tableTime = document.createElement('tr');
+  let tbody = document.getElementById('storeData');
+  let tableRow = document.createElement('tr');
+ 
+  /////////
+  let tdLocationName = document.createElement('td');
+  tdLocationName.textContent = this.storeLoc;
+  tableRow.appendChild(tdLocationName);
+  tbody.appendChild(tableRow);
+
+// /////////////////////////////added during class demo
+// //let this.cookiesEachHour =document.createElement('td) 
+// for(let i=0; hours. length; i++)
+// let ourCookieForThisHour=this.cookiesForThisHour
+// cookiesTotal[i]         =cookieForThisHour
+// cookieTotal += cookieForThisHour;
+
+// let cookiesEachHourlyData = document.createElement('td')
+// cookiesEachHourlyData.textContent = cookieForThisHour
+// //let cookietotal = document.createElement('td)
+// /////////////////////////////////////////////////////////
+ 
+  //create a row for each of our stores
+  //at the end of each store row tally the store totals in the last cell
+  //after all the stores render the last row will tally the hourly total for each store
+
+};
+
+let storeOne = new CookieStore('Seattle', 23, 65, 6.3);
+storeOne.calcCustomersEachHour();
+storeOne.calcCookiesEachHour();
+//add the rest of stores
+let storeTwo= new CookieStore('Tokyo', 3, 24, 1.2);
+storeTwo.calcCustomersEachHour();
+storeTwo.calcCookiesEachHour();
+
+let storeThree= new CookieStore('Dubai', 11, 38, 3.7);
+storeThree.calcCustomersEachHour();
+storeThree.calcCookiesEachHour();
+
+let storeFour= new CookieStore('Paris', 20, 38, 2.3);
+storeFour.calcCustomersEachHour();
+storeFour.calcCookiesEachHour();
+
+let storeFive= new CookieStore('Lima', 2, 16, 4.6);
+storeFive.calcCustomersEachHour();
+storeFive.calcCookiesEachHour();
+
+
+
+
+
+
+
+
+
+
+
+const allStores = [storeOne, storeTwo, storeThree, storeFour, storeFive];
 
 //IIFE
 (function renderAllStores(){
   for(let i = 0; i < allStores.length; i++){
+    console.log(allStores[i]);
     allStores[i].render();
   }
 })();
-
-
-
-
-// 'use strict';
-// console.log('this file is connected.');
-
-
-// // Stores the min/max hourly customers,//done
-// //and the average cookies per customer,//done
-// // Uses a method of that object to generate a random number of customers per hour.//done
-
-
-// // Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
-// //cookies each hour. + ave cookies purchased + random customers generated.
-
-
-// // Store the results for each location in a separate array...//started
-
-
-// //this will later as we use document object model to create and append to the html page.
-// // Display the values of each array as unordered lists in the browser
-// // Calculating the sum of these hourly totals; your output for each location should look like this:
-
-// let storeArray = [];
-// //object literals
-// let storeOne = {
-//   location: 'Seattle',
-//   minCustomer: 23,
-//   maxCustomer: 65,
-//   aveCookieSale: 6.3,
-//   customerPerHour: function(){
-//     return randomCustPerHour(this.maxCustomer, this.minCustomer);
-//   },
-//   cookiesPerHour: function(){
-//     return randomCustPerHour(this.aveCookieSale),
-//     console.log('do this still');
-//   }
-// };
-// storeOne.customerPerHour();
-// storeOne.cookiesPerHour();
-// console.log(storeOne.customerPerHour());
-
-// let storeTwo = {
-//   location: 'Tokyo',
-//   minCustomer: 3,
-//   maxCustomer: 24,
-//   aveCookieSale: 2.1,
-//   //customerEachHour: []
-// //totlaDailyCookies
-
-//   customerPerHour: function(){
-//     return randomCustPerHour(this.maxCustomer, this.minCustomer);
-
-//     //calc CustomerEachHour
-//   },
-//   cookiesPerHour: function(){
-//     return randomCustPerHour(this.aveCookieSale),
-//     console.log('do this still');
-//   }
-//   //calcCookiesperHour: function(){
-//   //  this.calccustomersEacHour: function()
-//  // }
-
-//  //render({
-//    //this.calCookiesEachHour();
-//    const un
-
-//  //})
-// };
-// storeTwo.customerPerHour();
-// console.log(storeTwo.customerPerHour());
-
-// let storeThree = {
-//   location: 'Dubai',
-//   minCustomer: 11,
-//   maxCustomer: 38,
-//   aveCookieSale: 3.7,
-//   customerPerHour: function(){
-//     return randomCustPerHour(this.maxCustomer, this.minCustomer);
-//   },
-//   cookiesPerHour: function(){
-//     return randomCustPerHour(this.aveCookieSale),
-//     console.log('do this still');
-//   }
-// };
-// storeThree.customerPerHour();
-// console.log(storeThree.customerPerHour());
-
-// let storeFour = {
-//   location: 'Paris',
-//   minCustomer: 20,
-//   maxCustomer: 38,
-//   aveCookieSale: 2.3,
-//   customerPerHour: function(){
-//     return randomCustPerHour(this.maxCustomer, this.minCustomer);
-//   },
-//   cookiesPerHour: function(){
-//     return randomCustPerHour(this.aveCookieSale),
-//     console.log('do this still');
-//   }
-// };
-// storeFour.customerPerHour();
-// console.log(storeFour.customerPerHour());
-
-// let storeFive = {
-//   location: 'Lima',
-//   minCustomer: 2,
-//   maxCustomer: 16,
-//   aveCookieSale: 4.6,
-//   customerPerHour: function(){
-//     return randomCustPerHour(this.maxCustomer, this.minCustomer);
-//   },
-//   cookiesPerHour: function(){
-//     return randomCustPerHour(this.aveCookieSale),
-//     console.log('do this still');
-//   }
-// };
-// storeFive.customerPerHour();
-// console.log(storeFive.customerPerHour());
-
-// // //let petOneImg = document.createElement('img');
-// // console.log(petOneImg);
-// // petOneImg.setAttribute('src', 'images/' + petOne.imageName + '.jpeg');
-// // petOneImg.setAttribute('alt', 'Cute kitty huh? Adopt kitty Now!');
-// // article.appendChild(petOneImg);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function randomCustPerHour(minCust, maxCust){
-//   return Math.ceil(Math.random() * (maxCust - minCust) + minCust);
-// }
