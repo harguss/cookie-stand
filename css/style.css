@@ -12,38 +12,56 @@ margin: 0 auto;
 
   
 }
-
-h1 h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 28px;
+  
+h1 {
+  font-family: 'Secular One', sans-serif;
+  font-size: 60px;
   text-align: center; 
   image-rendering: center;
-
-  }
-  p.one {
-    border-width: 2px;
-  }
-    
-
-
-
-
-
-
-
-
+}
+h2 {
+  font-family: 'Secular One', sans-serif;
+  text-align:  left;
+  font-size: 30px; 
+}
 
   
-
+  
     
+
+  #newStore {
+    border: solid;
+    background-color: rgb(158, 60, 22);
+    text-align: center;
+  }
+  
+  }
+  button:hover {
+    background: pink;
+    color: black;
+  }
+  #Pat {
+    margin-left: auto;
+    margin-right: 140px;
+    border: 5px solid red;
+    width: 20%;
+  }
+  
+
+  #indentOne {
+    font-size: 20px;;
+  }
+  nav {
+    font-size: 30px;
+    text-align: center;
+    padding-left: 10px;
+  }
+  
+
 footer {
-  text-align: center;
-}
- 
-img.align-left {
-  float: left;
-  margin-right: 5px;
-  padding: 50px;
+  font-size: 20;
 }
 
+footer
+    
   
